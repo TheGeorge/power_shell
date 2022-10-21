@@ -278,6 +278,8 @@ maybe_cover(Expanded, _File, Mod, Filename, Loaded, _Cover) ->
         mtime = filelib:last_modified(Filename)
     }.
 
+maybe_onload(_, _, false, FunMap) ->
+    FunMap;
 maybe_onload(false, Mod, FunName, FunMap) ->
     ok = power_shell:eval(Mod, FunName, [], FunMap),
     FunMap;
